@@ -4,7 +4,7 @@ using namespace std;
 
 Tree::Tree()
 {
-    root_ = nullptr;
+    root_ = NULL;
 }
 
 void Tree::deleteTree(Node *treeNode)
@@ -31,6 +31,7 @@ void Tree::insert(Node *treeNode, char value)
     if (!treeNode)
     {
         treeNode = new Node(value);
+        root_ = treeNode;
     }
     else
     {
@@ -63,7 +64,17 @@ void Tree::insert(Node *treeNode, char value)
     }
 }
 
-char Tree::getRoot()
+Node* Tree::getRoot()
 {
-    return root_->value;
+    return root_;
+}
+
+int Tree::getValue(Node *node)
+{
+    return node->value;
+}
+
+int Tree::getCount(Node *node)
+{
+    return node->count;
 }

@@ -9,8 +9,15 @@ int main()
 {
     Tree tree;
     tree.insert('c');
+    tree.insert('c');
+    tree.insert('c');
     tree.insert('b');
-    char result = tree.getRoot();
-    std::cout << result;
+    tree.insert('b');
+    tree.insert('b');
+    tree.insert('b');
+    Node *result = tree.getRoot();
+    int count = tree.getCount(result);
+    char value = tree.getValue(result);
+    std::cout << value << " " << count;
     return 0;
 }
