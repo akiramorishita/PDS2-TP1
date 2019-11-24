@@ -10,8 +10,9 @@ int main()
 {
     Book book;
     Tree tree;
+    int filenum = 0;
     string filename = "file.txt";
-    book.readData(filename,tree);
+    book.readData(filename,tree,filenum);
     return 0;
     /*Tree tree;
     tree.insert('c');

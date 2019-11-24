@@ -8,9 +8,9 @@ using namespace std;
 class Book
 {
 public:
-    void readData(string filename, Tree &tree);
+    void readData(string filename, Tree &tree, int filenum);
     void transformWord(string &word);
-    void addWord(string word, Tree &tree);
+    void addWord(string word, Tree &tree, int filenum);
 
 private:
 };
