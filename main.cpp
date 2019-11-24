@@ -13,6 +13,15 @@ int main()
     int filenum = 0;
     string filename = "file.txt";
     book.readData(filename,tree,filenum);
+    cout << 100 << endl;
+    cout << tree.getValue(tree.getRoot()) << endl;
+    cout << tree.getCount(tree.getRoot(),filenum) << endl;
+    cout << 101 << endl;
+    cout << tree.getValue(tree.getRoot()->right) << endl;
+    cout << tree.getCount(tree.getRoot()->right,filenum) << endl;
+    cout << 102 << endl;
+    cout << tree.getValue(tree.getRoot()->left) << endl;
+    cout << tree.getCount(tree.getRoot()->left,filenum) << endl;
     return 0;
     /*Tree tree;
     tree.insert('c');

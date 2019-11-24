@@ -4,7 +4,7 @@ using namespace std;
 
 Tree::Tree()
 {
-    root_ = NULL;
+    root_ = nullptr;
 }
 
 void Tree::deleteTree(Node *treeNode)
@@ -30,11 +30,15 @@ void Tree::insert(Node *treeNode, string value, int docNumber)
 {
     if (!treeNode)
     {
+        cout << "Entrou em Novo" << endl;
         treeNode = new Node(value, docNumber);
         root_ = treeNode;
     }
     else
     {
+        cout << "Entrou em insert" << endl;
+        cout << "value = " << value << endl;
+        cout << "node->value = " << treeNode->value << endl;
         if (value < treeNode->value)
         {
             if (!treeNode->left)

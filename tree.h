@@ -8,9 +8,9 @@ using namespace std;
 struct Node
 {
     Node(string value, int docNumber) {
-        value=value;
-        left = NULL;
-        right = NULL;
+        this->value=value;
+        left = nullptr;
+        right = nullptr;
         for(int i = 0; i < docNumber; i++)
             count.push_back(0);
         count.push_back(1);
