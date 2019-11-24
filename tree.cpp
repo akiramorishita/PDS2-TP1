@@ -1,6 +1,7 @@
 #include <iostream>
 #include "tree.h"
 #include <tgmath.h>
+#include <iomanip>
 using namespace std;
 
 Tree::Tree()
@@ -96,23 +97,21 @@ void Tree::indiceInvertido(Node *node, int docMax)
         indiceInvertido(node->left, docMax);
     }
     cout << node->value << endl;
-    cout << "--DocsAppear " << node->numDocsAppear << "--" << endl;
-    cout << "--DocMax " << docMax << "--" << endl;
-    cout << "--Div " << ((float)docMax/(float)node->numDocsAppear) << "--" << endl;  
+    cout << "Q " << log(((float)docMax / (float)node->numDocsAppear)) << endl;
     for (int i = 0; i < int(node->count.size()); i++)
     {
-        cout << node->count[i] << " ";
-        if (i==int(node->importance.size())){
+        if (i == int(node->importance.size()))
+        {
             node->importance.push_back(0);
         }
-        node->importance[i]= log((float)docMax/(float)node->numDocsAppear) * (float)node->count[i];
-        cout << node->importance[i] << "       ";
+        node->importance[i] = log((float)docMax / (float)node->numDocsAppear) * (float)node->count[i];
+        cout << fixed << setprecision(2) << node->importance[i] << "  ";
     }
-    for (int i = int(node->count.size());i<docMax+1;i++){
+    for (int i = int(node->count.size()); i < docMax; i++)
+    {
         node->count.push_back(0);
-        cout << node->count[i] << " ";
-        node->importance[i]= 0;
-        cout << node->importance[i] << "       ";
+        node->importance[i] = 0;
+        cout << fixed << setprecision(2) << node->importance[i] << "  ";
     }
     cout << endl;
     if (node->right != nullptr)
