@@ -63,6 +63,12 @@ void Tree::insert(Node *treeNode, string value, int docNumber)
         }
         else
         {
+            for (int i = treeNode->count.size()-1;i<docNumber;i++){
+                treeNode->count.push_back(0);
+            }
+            if (treeNode->count.size()<=docNumber){
+                treeNode->count.push_back(0);
+            }
             treeNode->count[docNumber]++;
         }
     }
