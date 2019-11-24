@@ -64,7 +64,7 @@ void Tree::insert(Node *treeNode, char value)
     }
 }
 
-Node* Tree::getRoot()
+Node *Tree::getRoot()
 {
     return root_;
 }

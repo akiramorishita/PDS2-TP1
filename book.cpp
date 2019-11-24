@@ -2,7 +2,7 @@
 #include <fstream>
 #include "book.h"
 #include <cmath>
-using namespace std; 
+using namespace std;
 
 void Book::readData(string filename)
 {
@@ -28,17 +28,22 @@ void Book::readData(string filename)
 void Book::transformWord(string &word)
 {
     string result;
-    for (int i=0;i<word.length();++i){
-        if(word[i]>=65 && word[i]<=90){
-            word[i]+=32;
+    for (unsigned int i = 0; i < word.length(); ++i)
+    {
+        if (word[i] >= 65 && word[i] <= 90)
+        {
+            word[i] += 32;
             result += word[i];
-        }else{
-            if(word[i]>=97 && word[i]<=122){
+        }
+        else
+        {
+            if (word[i] >= 97 && word[i] <= 122)
+            {
                 result += word[i];
             }
         }
     }
-    word=result;
+    word = result;
     return;
 }
 

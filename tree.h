@@ -27,7 +27,7 @@ public:
         deleteTree(root_);
     }
 
-    Node* getRoot();
+    Node *getRoot();
 
     int getValue(Node *node);
 
