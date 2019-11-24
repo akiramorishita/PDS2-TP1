@@ -2,6 +2,7 @@
 #include "tree.h"
 #include <tgmath.h>
 #include <iomanip>
+#include <algorithm>
 using namespace std;
 
 Tree::Tree()
@@ -30,8 +31,10 @@ Tree::~Tree()
 
 void Tree::insert(Node *treeNode, string value, int docNumber)
 {
+    cout << treeNode << endl;
     if (!treeNode)
     {
+        cout << "novo" << endl;
         treeNode = new Node(value, docNumber);
         root_ = treeNode;
     }
@@ -92,12 +95,15 @@ int Tree::getCount(Node *node, int docNumber)
 
 void Tree::indiceInvertido(Node *node, int docMax)
 {
+    cout << node->left << endl;
+    cout << node->right << endl;
     if (node->left != nullptr)
     {
         indiceInvertido(node->left, docMax);
     }
     cout << node->value << endl;
     cout << "Q " << log(((float)docMax / (float)node->numDocsAppear)) << endl;
+    q.push_back(log(((float)docMax / (float)node->numDocsAppear)));
     for (int i = 0; i < int(node->count.size()); i++)
     {
         if (i == int(node->importance.size()))
@@ -124,4 +130,37 @@ void Tree::indiceInvertido(Node *node, int docMax)
 void Tree::addNumDocsAppear(Node *node)
 {
     node->numDocsAppear += 1;
+}
+
+vector<float> Tree::cousineRanking(Node *node, int docMax, vector<string> query, vector<float> W)
+{
+    vector<float> sum;
+    vector<float> aux;
+    if (node->left != nullptr)
+    {
+        aux = cousineRanking(node->left, docMax, query, W);
+    }
+
+    if (find(query.begin(), query.end(), node->value) != query.end()){
+        for (int i = 0; i < docMax; i++){
+            sum.push_back(q[0]*node->importance[i]  );
+            q.push_back(q[0]);
+            q.erase(q.begin());
+        }
+    }else{
+        for (int i = 0; i < docMax; i++){
+            sum.push_back(0);
+        }
+    }
+
+    transform(sum.begin(),sum.end(),aux.begin(),sum.begin(),plus<float>());
+
+    if (node->right != nullptr)
+    {
+        aux = cousineRanking(node->right, docMax, query, W);
+    }
+
+    transform(sum.begin(),sum.end(),aux.begin(),sum.begin(),plus<float>());
+
+    return sum;
 }

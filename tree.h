@@ -31,6 +31,8 @@ public:
     Tree();
     ~Tree();
 
+    vector<float> q;
+
     void insert(string value, int docNumber)
     {
         insert(root_, value, docNumber);
@@ -50,6 +52,8 @@ public:
     void indiceInvertido(Node *node, int docMax);
 
     void addNumDocsAppear(Node *node);
+
+    vector<float> cousineRanking(Node *node, int docMax, vector<string> query, vector<float> W);
 
 private:
     Node *root_;
