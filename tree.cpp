@@ -60,7 +60,7 @@ void Tree::insert(Node *treeNode, string value, int docNumber)
         }
         else
         {
-            for (int i = treeNode->count.size() - 1; i < docNumber; i++)
+            for (int i = treeNode->count.size(); i < docNumber; i++)
             {
                 treeNode->count.push_back(0);
             }
@@ -96,14 +96,16 @@ void Tree::indiceInvertido(Node *node, int docMax)
         indiceInvertido(node->left, docMax);
     }
     cout << node->value << endl;
-    cout << "--" << node->numDocsAppear << "--" << endl;
+    cout << "--DocsAppear " << node->numDocsAppear << "--" << endl;
+    cout << "--DocMax " << docMax << "--" << endl;
+    cout << "--Div " << ((float)docMax/(float)node->numDocsAppear) << "--" << endl;  
     for (int i = 0; i < int(node->count.size()); i++)
     {
         cout << node->count[i] << " ";
         if (i==int(node->importance.size())){
             node->importance.push_back(0);
         }
-        node->importance[i]= log(docMax/node->numDocsAppear) * node->count[i];
+        node->importance[i]= log((float)docMax/(float)node->numDocsAppear) * (float)node->count[i];
         cout << node->importance[i] << "       ";
     }
     for (int i = int(node->count.size());i<docMax+1;i++){
@@ -122,6 +124,5 @@ void Tree::indiceInvertido(Node *node, int docMax)
 
 void Tree::addNumDocsAppear(Node *node)
 {
-    cout << "FON ";
     node->numDocsAppear += 1;
 }

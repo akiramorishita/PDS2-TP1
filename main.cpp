@@ -20,6 +20,9 @@ int main()
     filename = "file3.txt";
     filenum++;
     book.readData(filename, tree, filenum);
+    filename = "file4.txt";
+    filenum++;
+    book.readData(filename, tree, filenum);
     tree.indiceInvertido(tree.getRoot(),filenum);
     return 0;
     /*Tree tree;
