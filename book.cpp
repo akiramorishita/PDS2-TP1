@@ -48,6 +48,6 @@ void Book::transformWord(string &word)
 
 void Book::addWord(string word, Tree &tree, int filenum)
 {
-    tree.insert(word);
+    tree.insert(word,filenum);
     return;
 }

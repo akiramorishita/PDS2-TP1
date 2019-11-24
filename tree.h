@@ -8,7 +8,7 @@ using namespace std;
 struct Node
 {
     Node(string value, int docNumber) {
-        value;
+        value=value;
         left = NULL;
         right = NULL;
         for(int i = 0; i < docNumber; i++)
