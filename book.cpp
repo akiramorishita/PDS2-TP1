@@ -1,8 +1,10 @@
+#include <iostream>
+#include <fstream>
 #include "book.hpp"
 #include <cmath>
 using namespace std; 
 
-Book::readData()
+void Book::readData()
 {
     fstream file;
     string word, t, q, filename;
@@ -20,9 +22,13 @@ Book::readData()
         cout << word << endl;
     }
 
-    return 0;
+    return;
 }
 
-Book::translateWord(char *word)
+char Book::transformWord()
+{
+}
+
+void Book::addWord()
 {
 }

@@ -7,7 +7,9 @@
 
 int main()
 {
-    Tree tree;
+    std::cout << "Hello World" << std::endl;
+    return 0;
+    /*Tree tree;
     tree.insert('c');
     tree.insert('c');
     tree.insert('c');
@@ -19,5 +21,5 @@ int main()
     int count = tree.getCount(result);
     char value = tree.getValue(result);
     std::cout << value << " " << count;
-    return 0;
+    return 0;*/
 }
