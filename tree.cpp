@@ -26,11 +26,11 @@ Tree::~Tree()
     deleteTree(root_);
 }
 
-void Tree::insert(Node *treeNode, char value)
+void Tree::insert(Node *treeNode, string value, int docNumber)
 {
     if (!treeNode)
     {
-        treeNode = new Node(value);
+        treeNode = new Node(value, docNumber);
         root_ = treeNode;
     }
     else
@@ -39,27 +39,27 @@ void Tree::insert(Node *treeNode, char value)
         {
             if (!treeNode->left)
             {
-                treeNode->left = new Node(value);
+                treeNode->left = new Node(value, docNumber);
             }
             else
             {
-                insert(treeNode->left, value);
+                insert(treeNode->left, value, docNumber);
             }
         }
         else if (value > treeNode->value)
         {
             if (!treeNode->right)
             {
-                treeNode->right = new Node(value);
+                treeNode->right = new Node(value, docNumber);
             }
             else
             {
-                insert(treeNode->right, value);
+                insert(treeNode->right, value, docNumber);
             }
         }
         else
         {
-            treeNode->count++;
+            treeNode->count[docNumber]++;
         }
     }
 }
@@ -69,12 +69,12 @@ Node *Tree::getRoot()
     return root_;
 }
 
-int Tree::getValue(Node *node)
+string Tree::getValue(Node *node)
 {
     return node->value;
 }
 
-int Tree::getCount(Node *node)
+int Tree::getCount(Node *node, int docNumber)
 {
-    return node->count;
+    return node->count[docNumber];
 }

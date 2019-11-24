@@ -1,12 +1,22 @@
 #ifndef TREE
 #define TREE
+#include <iostream>
+#include <vector>
+using namespace std;
 
 // Representa um número complexo.
 struct Node
 {
-    Node(char value) : value(value), count(1), left(NULL), right(NULL){};
-    char value;
-    int count;
+    Node(string value, int docNumber) {
+        value;
+        left = NULL;
+        right = NULL;
+        for(int i = 0; i < docNumber; i++)
+            count.push_back(0);
+        count.push_back(1);
+    };
+    string value;
+    vector<int> count;
     Node *left;
     Node *right;
 };
@@ -17,9 +27,9 @@ public:
     Tree();
     ~Tree();
 
-    void insert(char value)
+    void insert(string value, int docNumber)
     {
-        insert(root_, value);
+        insert(root_, value, docNumber);
     }
 
     void deleteTree()
@@ -29,13 +39,13 @@ public:
 
     Node *getRoot();
 
-    int getValue(Node *node);
+    string getValue(Node *node);
 
-    int getCount(Node *node);
+    int getCount(Node *node, int docNumber);
 
 private:
     Node *root_;
-    void insert(Node *treeNode, char value);
+    void insert(Node *treeNode, string value, int docNumber);
     void deleteTree(Node *treeNode);
 };
 
