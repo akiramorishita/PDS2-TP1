@@ -2,6 +2,7 @@
 #include "tree.h"
 #include <tgmath.h>
 #include <iomanip>
+#include <algorithm>
 using namespace std;
 
 Tree::Tree()
@@ -96,8 +97,8 @@ void Tree::indiceInvertido(Node *node, int docMax)
     {
         indiceInvertido(node->left, docMax);
     }
-    cout << node->value << endl;
-    cout << "Q " << log(((float)docMax / (float)node->numDocsAppear)) << endl;
+    cout << node->value << " ";
+    q.push_back(log(((float)docMax / (float)node->numDocsAppear)));
     for (int i = 0; i < int(node->count.size()); i++)
     {
         if (i == int(node->importance.size()))
@@ -124,4 +125,53 @@ void Tree::indiceInvertido(Node *node, int docMax)
 void Tree::addNumDocsAppear(Node *node)
 {
     node->numDocsAppear += 1;
+}
+
+vector<float> Tree::cousineRanking(Node *node, int docMax, vector<string> query)
+{
+    vector<float> sum;
+    vector<float> aux;
+    cout << " " << q[0] << " ";
+    if (node->left != nullptr)
+    {
+        aux = cousineRanking(node->left, docMax, query);
+    }else{
+        for (int i = 0; i < docMax; i++){
+            aux.push_back(0);
+        }
+    }
+
+    if (find(query.begin(), query.end(), node->value) != query.end()){
+        for (int i = 0; i < docMax; i++){
+            sum.push_back(q[0]*node->importance[i]  );
+        }
+    }else{
+        for (int i = 0; i < docMax; i++){
+            sum.push_back(0);
+        }
+    }
+
+    q.push_back(q[0]);
+    q.erase(q.begin());
+
+    for (int i = 0; i<(int)aux.size();i++){
+        sum[i] += aux[i];
+    }
+
+    if (node->right != nullptr)
+    {
+        aux = cousineRanking(node->right, docMax, query);
+    }else{
+        for (int i = 0; i < docMax; i++){
+            aux.push_back(0);
+        }
+    }
+
+    transform(sum.begin(),sum.end(),aux.begin(),sum.begin(),plus<float>());
+
+    return sum;
+}
+
+vector<float> Tree::getQ(){
+    return q;
 }

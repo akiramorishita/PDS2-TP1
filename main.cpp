@@ -36,6 +36,7 @@ int main()
 
     vector<float> aux;
     vector<string> query;
+    vector<string> result;
     query.push_back("a");
     query.push_back("b");
 
@@ -45,7 +46,18 @@ int main()
 
     //sort(aux.begin(),aux.end());
     for (int i = 0;i<(int)aux.size();i++){
-        cout << "Doc" << i+1 <<" Nota: " << aux[i] << endl;
+        stringstream ss, s1;
+        ss << fixed << setprecision(2) << aux[i];
+        string str(ss.str());
+        str.append(" Doc");
+        s1 << (i+1);
+        str.append(s1.str());
+        result.push_back(str);
     }
+    sort(result.begin(),result.end());
+    for (int i = (int)result.size()-1;i>=0;i--){
+        cout << result[i] << endl;
+    }
+
     return 0;
 }

@@ -51,10 +51,15 @@ public:
 
     void addNumDocsAppear(Node *node);
 
+    vector<float> cousineRanking(Node *node, int docMax, vector<string> query);
+
+    vector<float> getQ();
+
 private:
     Node *root_;
     void insert(Node *treeNode, string value, int docNumber);
     void deleteTree(Node *treeNode);
+    vector<float> q;
 };
 
 #endif
