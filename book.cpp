@@ -1,13 +1,14 @@
 #include <iostream>
 #include <fstream>
 #include "book.h"
+#include "tree.h"
 #include <cmath>
 using namespace std;
 
-void Book::readData(string filename)
+void Book::readData(string filename, Tree &tree)
 {
     fstream file;
-    string word, t, q;
+    string word;
 
     // opening file
     file.open(filename.c_str());
@@ -16,10 +17,8 @@ void Book::readData(string filename)
     while (file >> word)
     {
         // displaying content
-        cout << word << endl;
         transformWord(word);
-        cout << word << endl;
-        cout << endl;
+        addWord(word, tree);
     }
 
     return;
@@ -37,7 +36,7 @@ void Book::transformWord(string &word)
         }
         else
         {
-            if (word[i] >= 97 && word[i] <= 122)
+            if ((word[i] >= 97 && word[i] <= 122) || (word[i] >= 48 && word[i] <= 57))
             {
                 result += word[i];
             }
@@ -47,6 +46,8 @@ void Book::transformWord(string &word)
     return;
 }
 
-void Book::addWord()
+void Book::addWord(string word, Tree &tree)
 {
+    tree.insert(word);
+    return;
 }

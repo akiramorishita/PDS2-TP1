@@ -9,8 +9,9 @@ using namespace std;
 int main()
 {
     Book book;
+    Tree tree;
     string filename = "file.txt";
-    book.readData(filename);
+    book.readData(filename,tree);
     return 0;
     /*Tree tree;
     tree.insert('c');
