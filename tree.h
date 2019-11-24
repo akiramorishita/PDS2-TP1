@@ -15,11 +15,14 @@ struct Node
         for (int i = 0; i < docNumber; i++)
             count.push_back(0);
         count.push_back(1);
+        numDocsAppear = 1;
     };
     string value;
     vector<int> count;
+    vector<float> importance;
     Node *left;
     Node *right;
+    int numDocsAppear;
 };
 
 class Tree
@@ -44,7 +47,9 @@ public:
 
     int getCount(Node *node, int docNumber);
 
-    void indiceInvertido(Node *node);
+    void indiceInvertido(Node *node, int docMax);
+
+    void addNumDocsAppear(Node *node);
 
 private:
     Node *root_;
