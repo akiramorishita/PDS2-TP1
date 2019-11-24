@@ -30,15 +30,11 @@ void Tree::insert(Node *treeNode, string value, int docNumber)
 {
     if (!treeNode)
     {
-        cout << "Entrou em Novo" << endl;
         treeNode = new Node(value, docNumber);
         root_ = treeNode;
     }
     else
     {
-        cout << "Entrou em insert" << endl;
-        cout << "value = " << value << endl;
-        cout << "node->value = " << treeNode->value << endl;
         if (value < treeNode->value)
         {
             if (!treeNode->left)
@@ -63,10 +59,12 @@ void Tree::insert(Node *treeNode, string value, int docNumber)
         }
         else
         {
-            for (int i = treeNode->count.size()-1;i<docNumber;i++){
+            for (int i = treeNode->count.size() - 1; i < docNumber; i++)
+            {
                 treeNode->count.push_back(0);
             }
-            if (treeNode->count.size()<=docNumber){
+            if (int(treeNode->count.size()) <= docNumber)
+            {
                 treeNode->count.push_back(0);
             }
             treeNode->count[docNumber]++;
@@ -87,4 +85,23 @@ string Tree::getValue(Node *node)
 int Tree::getCount(Node *node, int docNumber)
 {
     return node->count[docNumber];
+}
+
+void Tree::indiceInvertido(Node *node)
+{
+    if (node->left != nullptr)
+    {
+        indiceInvertido(node->left);
+    }
+    cout << node->value << endl;
+    for (int i = 0; i < int(node->count.size()); i++)
+    {
+        cout << node->count[i] << " ";
+    }
+    cout << endl;
+    if (node->right != nullptr)
+    {
+        indiceInvertido(node->right);
+    }
+    return;
 }

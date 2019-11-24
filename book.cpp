@@ -48,7 +48,6 @@ void Book::transformWord(string &word)
 
 void Book::addWord(string word, Tree &tree, int filenum)
 {
-    cout << "ooi" << endl;
-    tree.insert(word,filenum);
+    tree.insert(word, filenum);
     return;
 }
