@@ -5,7 +5,7 @@
 #include <cmath>
 using namespace std;
 
-void Book::readData(string filename, Tree &tree)
+void Book::readData(string filename, Tree &tree, int filenum)
 {
     fstream file;
     string word;
@@ -18,7 +18,7 @@ void Book::readData(string filename, Tree &tree)
     {
         // displaying content
         transformWord(word);
-        addWord(word, tree);
+        addWord(word, tree, filenum);
     }
 
     return;
@@ -46,7 +46,7 @@ void Book::transformWord(string &word)
     return;
 }
 
-void Book::addWord(string word, Tree &tree)
+void Book::addWord(string word, Tree &tree, int filenum)
 {
     tree.insert(word);
     return;
